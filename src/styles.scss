@@ -4,17 +4,25 @@
 // components according to the Material 3 design spec.
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
+@use 'sass:map';
 @use '@angular/material' as mat;
+
+@import "tailwindcss";
+
 
 html {
   @include mat.theme((
     color: (
-      primary: mat.$magenta-palette,
-      tertiary: mat.$violet-palette,
+      primary:   mat.$violet-palette,
+      secondary: mat.$cyan-palette,
+      tertiary:  mat.$chartreuse-palette,
+      error:     mat.$red-palette,
     ),
     typography: Roboto,
     density: 0,
   ));
+
+  color: #1a1c18;
 }
 
 body {
@@ -26,8 +34,7 @@ body {
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
   // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
+  background: map.get(mat.$cyan-palette, neutral-variant, 98);
   font: var(--mat-sys-body-medium);
 
   // Reset the user agent margin.
@@ -37,3 +44,20 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1a1c18;
+}
+
+.subtitle, .secondary-text, label {
+  color: #3f4948;
+}
+
+a, .link {
+  color: #005cbb;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #7d00fa;
+}
