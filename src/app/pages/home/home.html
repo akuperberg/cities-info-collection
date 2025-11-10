@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div class="h-full flex items-center py-10 px-2 flex-col gap-4 home-container page-enter">
+    <div class="flex mt-36 flex-col gap-4 items-center text-center">
+        <div class="relative flex gap-6 flex-col">
+            <h1 class="text-xl font-bold uppercase">
+                Don't know which city to visit?
+            </h1>
+            <p> We will help you find the perfect one.</p>
+            <mat-radio-group class="flex gap-4 justify-center" aria-label="Select an option" [(ngModel)]="selectedOption">
+                <mat-radio-button value="search">Search for a specific city</mat-radio-button>
+                <mat-radio-button value="recommend">Recommend me a city</mat-radio-button>
+            </mat-radio-group>
+
+            <div class="absolute action-items w-full">
+                @if (selectedOption === 'recommend') {
+                <button matButton="filled" class="fade-slide-in btn-large">Get Started</button>
+                } @else {
+                <form class="w-full fade-slide-in">
+                    <div class="w-full flex justify-center items-center">
+                        <mat-form-field class="w-full">
+                            <mat-label>Search for a city</mat-label>
+                            <input matInput placeholder="Ex. Tokyo" />
+                        </mat-form-field>
+
+                        <button matIconButton aria-label="Search button" class="search-button">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
