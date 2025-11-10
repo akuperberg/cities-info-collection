@@ -1,4 +1,33 @@
 <div class="h-full flex items-center py-10 px-2 flex-col gap-4 home-container page-enter">
+    <!-- Backend Status Indicator -->
+    <div class="fixed top-4 right-4 p-3 rounded-lg shadow-md text-sm" 
+         [class.bg-green-100]="backendStatus() === 'connected'"
+         [class.bg-yellow-100]="backendStatus() === 'checking'"
+         [class.bg-red-100]="backendStatus() === 'disconnected'"
+         [class.text-green-800]="backendStatus() === 'connected'"
+         [class.text-yellow-800]="backendStatus() === 'checking'"
+         [class.text-red-800]="backendStatus() === 'disconnected'">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full"
+                  [class.bg-green-500]="backendStatus() === 'connected'"
+                  [class.bg-yellow-500]="backendStatus() === 'checking'"
+                  [class.bg-red-500]="backendStatus() === 'disconnected'"
+                  [class.animate-pulse]="backendStatus() === 'checking'"></span>
+            <span class="font-semibold">
+                @if (backendStatus() === 'checking') {
+                    Checking...
+                } @else if (backendStatus() === 'connected') {
+                    Backend Connected
+                } @else {
+                    Backend Offline
+                }
+            </span>
+        </div>
+        @if (backendMessage()) {
+            <p class="text-xs mt-1">{{ backendMessage() }}</p>
+        }
+    </div>
+
     <div class="flex mt-36 flex-col gap-4 items-center text-center">
         <div class="relative flex gap-6 flex-col">
             <h1 class="text-xl font-bold uppercase">
