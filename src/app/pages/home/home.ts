@@ -40,4 +40,20 @@ export class Home implements OnInit {
       }
     });
   }
+
+  // Test method for city details - you can call this from browser console
+  testBologna() {
+    this.apiService.getCityDetails('https://www.travelsafe-abroad.com/italy/bologna/').subscribe({
+      next: (response) => {
+        console.log('Bologna Details:', response);
+        console.log('City:', response.city.name);
+        console.log('Safety Index:', response.city.safetyIndex);
+        console.log('User Sentiment:', response.city.userSentiment);
+        console.log('Description (first 200 chars):', response.city.description?.substring(0, 200));
+      },
+      error: (error) => {
+        console.error('Error fetching Bologna details:', error);
+      }
+    });
+  }
 }
